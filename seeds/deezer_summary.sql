@@ -1,0 +1,1 @@
+SELECT * FROM risknet-platform.spotify_dataset.deezer_artists
