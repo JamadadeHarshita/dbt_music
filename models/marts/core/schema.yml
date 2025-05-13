@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: dim_artists
+    description: "Unified artist dimension from Spotify, YouTube, and Deezer"
+    columns:
+      - name: artist_id
+        tests: [not_null, unique]
+
+  - name: artist_weekly_snapshot
+    description: "Weekly snapshot of artist popularity and followers"
+
+  - name: artist_momentum_tracker
+    description: "Tracks growth trends and rising artists over time"
+
+  - name: top_rising_artists
+    description: "Weekly top 50 artists showing the highest momentum"
+
+  - name: platform_presence_summary
+    description: "Flags platform presence (YouTube, Deezer) per artist"

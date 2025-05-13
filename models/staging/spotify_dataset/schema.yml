@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: spotify_dataset
+    database: risknet-platform
+    schema: spotify_dataset
+    tables:
+      - name: processed_artists
+      - name: youtube_artists
+      - name: deezer_artists
+
+models:
+  - name: stg_spotify_artists
+    description: "Cleaned Spotify data with artist classification and deduplication"
+    columns:
+      - name: artist_id
+        description: "Spotify unique artist ID"
+        tests: [not_null, unique]
+      - name: fetched_at
+        description: "Timestamp when the data was pulled"
+  - name: stg_youtube_channels
+    description: "YouTube enrichment data joined by artist_id"
+  - name: stg_deezer_artists
+    description: "Deezer enrichment data joined by artist_id"
