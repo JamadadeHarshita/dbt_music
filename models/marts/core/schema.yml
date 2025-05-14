@@ -1,5 +1,4 @@
 version: 2
-
 models:
   - name: dim_artists
     description: "Unified artist dimension from Spotify, YouTube, and Deezer"
@@ -7,14 +6,36 @@ models:
       - name: artist_id
         tests: [not_null, unique]
 
-  - name: artist_weekly_snapshot
-    description: "Weekly snapshot of artist popularity and followers"
+  - name: genre_distribution
+    description: "Distribution of artists by genre and average popularity"
+    columns:
+      - name: genre
+        tests: [not_null]
+      - name: artist_count
+      - name: avg_popularity
 
-  - name: artist_momentum_tracker
-    description: "Tracks growth trends and rising artists over time"
-
-  - name: top_rising_artists
-    description: "Weekly top 50 artists showing the highest momentum"
+  - name: artist_popularity_scores
+    description: "Model calculating weighted artist popularity score"
+    columns:
+      - name: artist_id
+        tests: [not_null]
+      - name: popularity_score
+        description: "Weighted score using followers, subscribers, and fans"
+        
+  - name: classified_artists
+    description: "Artist classification into emerging, popular, and famous"
+    columns:
+      - name: artist_id
+        tests: [not_null]
+      - name: artist_class
+        tests:
+          - accepted_values:
+              values: ['emerging', 'popular', 'famous']
 
   - name: platform_presence_summary
-    description: "Flags platform presence (YouTube, Deezer) per artist"
+    description: "Flags platform presence per artist"
+    columns:
+      - name: artist_id
+        tests: [not_null]
+      - name: has_youtube
+      - name: has_deezer

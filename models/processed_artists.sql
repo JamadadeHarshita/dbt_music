@@ -1,0 +1,1 @@
+SELECT * from risknet-platform.spotify_dataset.processed_artists
